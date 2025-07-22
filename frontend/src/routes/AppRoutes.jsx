@@ -7,15 +7,6 @@ import LoginPage from "../auth/LoginPage";
 // Role Route protection
 import RoleRoute from "./RoleRoute";
 
-// ADMIN
-import DashboardAdmin from "../pages/admin/Dashboard";
-import DataKaryawanAdmin from "../pages/admin/DataKaryawan";
-import KeluargaKaryawanAdmin from "../pages/admin/KeluargaKaryawan";
-import PencairanKeuanganAdmin from "../pages/admin/PencairanKeuangan";
-import PengajuanKlaimAdmin from "../pages/admin/PengajuanKlaim";
-import PersetujuanHRDAdmin from "../pages/admin/PersetujuanHRD";
-import RiwayatKlaimAdmin from "../pages/admin/RiwayatKlaim";
-
 // HRD
 import DashboardHRD from "../pages/hrd/Dashboard";
 import DataKaryawanHRD from "../pages/hrd/DataKaryawan";
@@ -50,17 +41,6 @@ const AppRoutes = () => {
         {/* Login */}
         <Route path="/" element={<LoginPage />} />
 
-        {/* Admin Routes */}
-        <Route element={<RoleRoute allowedRoles={["admin"]} />}>
-          <Route path="/dashboard/admin" element={<DashboardAdmin />} />
-          <Route path="/admin/data-karyawan" element={<DataKaryawanAdmin />} />
-          <Route path="/admin/keluarga-karyawan" element={<KeluargaKaryawanAdmin />} />
-          <Route path="/admin/pencairan-keuangan" element={<PencairanKeuanganAdmin />} />
-          <Route path="/admin/pengajuan-klaim" element={<PengajuanKlaimAdmin />} />
-          <Route path="/admin/persetujuan-hrd" element={<PersetujuanHRDAdmin />} />
-          <Route path="/admin/riwayat-klaim" element={<RiwayatKlaimAdmin />} />
-        </Route>
-
         {/* HRD Routes */}
         <Route element={<RoleRoute allowedRoles={["hrd"]} />}>
           <Route path="/dashboard/hrd" element={<DashboardHRD />} />
@@ -93,7 +73,6 @@ const AppRoutes = () => {
           <Route path="/keuangan/persetujuan-hrd" element={<PersetujuanHRDKeuangan />} />
           <Route path="/keuangan/riwayat-klaim" element={<RiwayatKlaimKeuangan />} />
         </Route>
-
       </Routes>
     </Router>
   );

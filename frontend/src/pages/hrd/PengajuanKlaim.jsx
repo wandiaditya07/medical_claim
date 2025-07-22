@@ -7,7 +7,6 @@ import { Card, Form, Button } from "react-bootstrap";
 import SidebarHRD from "../../components/hrd/Sidebar";
 import SidebarKeuangan from "../../components/keuangan/Sidebar";
 import SidebarKaryawan from "../../components/karyawan/Sidebar";
-import SidebarAdmin from "../../components/admin/Sidebar";
 
 const PengajuanKlaim = () => {
   const role = localStorage.getItem("role");

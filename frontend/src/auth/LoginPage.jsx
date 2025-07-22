@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const dummyUsers = [
   { username: 'karyawan', password: 'karyawan', role: 'karyawan' },
   { username: 'hrd', password: 'hrd', role: 'hrd' },
-  { username: 'admin', password: 'admin', role: 'admin' },
   { username: 'keuangan', password: 'keuangan', role: 'keuangan' },
 ];
 
@@ -36,9 +35,6 @@ const LoginPage = () => {
     break;
   case 'hrd':
     navigate('/dashboard/hrd');
-    break;
-  case 'admin':
-    navigate('/dashboard/admin');
     break;
   case 'keuangan':
     navigate('/dashboard/keuangan');
