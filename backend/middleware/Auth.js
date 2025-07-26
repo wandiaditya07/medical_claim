@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { jwtSecret } = require('../config/jwt');
-const { pool } = require('../config/db');
+const { jwtSecret } = require('../config/jwt'); // <-- TAMBAHKAN BARIS INI
 
 // Middleware untuk memverifikasi token JWT
 exports.verifyToken = (req, res, next) => {
@@ -11,6 +10,7 @@ exports.verifyToken = (req, res, next) => {
         return res.status(401).json({ message: 'Access Denied: No token provided' });
     }
 
+    // jwtSecret digunakan di sini
     jwt.verify(token, jwtSecret, (err, user) => {
         if (err) {
             return res.status(403).json({ message: 'Access Denied: Invalid token' });
@@ -24,7 +24,8 @@ exports.verifyToken = (req, res, next) => {
 exports.authorizeRoles = (...roles) => {
     return (req, res, next) => {
         if (!req.user || !req.user.role) {
-            return res.status(403).json({ message: 'Access Denied: User role not found' });
+            // Ini bisa terjadi jika verifyToken tidak dijalankan sebelumnya atau token tidak valid
+            return res.status(403).json({ message: 'Access Denied: User role not found or token not verified' });
         }
         if (!roles.includes(req.user.role)) {
             return res.status(403).json({ message: 'Access Denied: You do not have permission for this action' });

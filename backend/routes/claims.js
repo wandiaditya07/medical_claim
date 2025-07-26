@@ -1,28 +1,26 @@
+// src/routes/claims.js
 const express = require('express');
 const router = express.Router();
 const claimController = require('../controllers/claimController');
 const { verifyToken, authorizeRoles } = require('../middleware/Auth');
+const upload = require('../middleware/upload');
 
-// Apply JWT verification to all claim routes
+// Middleware ini berlaku untuk semua rute di file ini
 router.use(verifyToken);
 
-// GET all claims (filtered by role in controller)
+// --- Rute Umum & Karyawan ---
 router.get('/', claimController.getClaims);
-
-// GET claim by ID
+router.get('/for-approval', authorizeRoles('HRD'), claimController.getClaimsForApproval); 
 router.get('/:id', claimController.getClaimById);
+router.post('/', authorizeRoles('KARYAWAN'), upload.single('receipt_file'), claimController.createClaim);
+router.delete('/:id', authorizeRoles('HRD'), claimController.deleteClaim);
 
-// POST new claim (only Employees or specific user role can create)
-// Note: req.user.user_id will be available from verifyToken middleware for employee_id
-router.post('/', authorizeRoles('KARYAWAN'), claimController.createClaim);
+// --- Rute Khusus Persetujuan HRD ---
+// HAPUS verifyToken dari sini
+router.put('/:id/approve', authorizeRoles('HRD'), claimController.approveClaim);
+router.put('/:id/reject', authorizeRoles('HRD'), claimController.rejectClaim);
 
-// UPDATE claim status by HRD
-router.put('/:id/status/hrd', authorizeRoles('HRD'), claimController.updateClaimStatusHRD);
-
-// UPDATE claim status by Finance (payment)
-router.put('/:id/status/finance', authorizeRoles('KEUANGAN'), claimController.updateClaimStatusFinance);
-
-// DELETE claim (only Admin or HRD can delete)
-router.delete('/:id', authorizeRoles('ADMIN', 'HRD'), claimController.deleteClaim);
+// --- Rute Khusus Keuangan ---
+router.put('/:id/pay', authorizeRoles('KEUANGAN'), claimController.payClaim);
 
 module.exports = router;
