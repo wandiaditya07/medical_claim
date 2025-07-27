@@ -18,6 +18,9 @@ include:
 - **Keuangan**: _keuangan.staff@kantor.com_
 - **Karyawan**: (Created by HRD)
 
+**Password for Finance & HR** =
+_login123_ 
+
 **Folder structure** = 
 
 📦medical_claim
