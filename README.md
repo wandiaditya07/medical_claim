@@ -6,12 +6,12 @@ include:
 - _Fasya Hasna Aidah (230444180005)_
 
 **Dependencies** =
-``bash
-_git clone_
-_git cd medical_claim_
+- ``bash
+- _git clone_
+- _git cd medical_claim_
 
-_git cd frontend - backend
-npm install_
+- _git cd frontend - backend
+- _npm install_
 
 **Users Management** =
 - **HRD**: _hrd.admin@kantor.com_
