@@ -10,7 +10,7 @@ include:
 - _git clone_
 - _git cd medical_claim_
 
-- _git cd frontend - backend
+- _git cd frontend - backend_
 - _npm install_
 
 **Users Management** =
